@@ -1,4 +1,5 @@
-﻿using Core.Utilities.Results.Abstract;
+﻿using Core.Entity.Concrete;
+using Core.Utilities.Results.Abstract;
 using Entity.Concrete;
 using Entity.DTOs;
 using System;
@@ -18,5 +19,6 @@ namespace Business.Abstract
         IDataResult<User> GetUserByUserId(int id);
         IDataResult<List<User>> GetAllUsers();
         IDataResult<List<UserDetailDto>> GetAllUsersDetails();
+        IDataResult<UserDetailDto> GetUserDetailsById(int id);
     }
 }

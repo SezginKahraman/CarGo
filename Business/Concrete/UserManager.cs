@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Entity.Concrete;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entity.Concrete;
 using Entity.DTOs;
@@ -21,32 +23,38 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Add(user);
+            return new SuccessResult();
         }
 
         public IResult Delete(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Delete(user);
+            return new SuccessResult();
         }
 
         public IDataResult<List<User>> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
         public IDataResult<List<UserDetailDto>> GetAllUsersDetails()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetAllUsersDetails());
         }
-
+        public IDataResult<UserDetailDto> GetUserDetailsById(int id)
+        {
+            return new SuccessDataResult<UserDetailDto>(_userDal.GetUserDetailDto(id));
+        }
         public IDataResult<User> GetUserByUserId(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<User>(_userDal.Get(x=> x.Id == id));
         }
 
         public IResult Update(User user)
         {
-            throw new NotImplementedException();
+            _userDal.Update(user);
+            return new SuccessResult();
         }
     }
 }

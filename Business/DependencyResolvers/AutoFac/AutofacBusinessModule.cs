@@ -6,6 +6,8 @@ using Castle.DynamicProxy;
 using Core.Utilities.Helpers.Abstract;
 using Core.Utilities.Helpers.Concrete;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
+using Core.Utilities.Security.JWT.Abstract;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entity.Concrete;
@@ -36,7 +38,9 @@ namespace Business.DependencyResolvers.AutoFac
             builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
             builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
             builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();
-            builder.RegisterType<ImageHelper>().As<IImageHelper>().SingleInstance();
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<IJwtHelper>().SingleInstance();
+            builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
 
             //This method looks for every class if there is a aspects
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
