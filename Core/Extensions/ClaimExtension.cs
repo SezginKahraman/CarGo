@@ -14,12 +14,5 @@ namespace Core.Extensions
         {
             roles.ToList().ForEach(role=> claims.Add(new Claim(ClaimTypes.Role, role)));
         }
-
-        //extension test
-        //public static void myAddingTest(this string[] array)
-        //{
-        //    Console.WriteLine("test is working");
-        //}
-        
     }
 }

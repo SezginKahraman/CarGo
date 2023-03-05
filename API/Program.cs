@@ -3,6 +3,8 @@ using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolvers.AutoFac;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
@@ -28,6 +30,13 @@ builder.Services.AddSwaggerGen();
 //We are using autofac. There is no need to use microsoft's IoC container.
 //builder.Services.AddSingleton<ICarDal, EfCarDal>();
 //builder.Services.AddSingleton<ICarService, CarManager>();
+
+//Lets use the extenteded IoC Container.
+builder.Services.AddDependencyResolver(new Core.Utilities.IoC.ICoreModule[]
+{
+    new CoreModule()
+
+}); 
 
 var app = builder.Build();
 

@@ -20,8 +20,11 @@ namespace Core.Utilities.Security.JWT
     public class JwtHelper : IJwtHelper
     {
         IConfiguration _configuration { get; }
+
         TokenOptions _accessToken;
+
         private DateTime _expirationTime;
+
         public JwtHelper(IConfiguration configuration)
         {
             _configuration = configuration;
