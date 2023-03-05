@@ -49,7 +49,7 @@ namespace DataAccess.Concrete.EntityFramework
                                   RentDate = rentalTable.RentDate,
                                   ReturnDate = rentalTable.ReturnDate
                               };
-                var userDetailDto = (from userTable in carGoContext.Set<User>()
+                var userDetailDto = from userTable in carGoContext.Set<User>()
                                     join customerTable in carGoContext.Set<Customer>()
                                     on userTable.Id equals customerTable.UserId
                                     join rentalTable in carGoContext.Set<Rental>()
@@ -61,8 +61,8 @@ namespace DataAccess.Concrete.EntityFramework
                                         LastName = userTable.LastName,
                                         Id = userTable.Id,
                                         Rentals = rentals.Where(x => x.CustomerId == userTable.Id).ToList()
-                                    });
-                return userDetailDto.ToList();
+                                    };
+                return userDetailDto.ToList().DistinctBy(x=>x.Id).ToList();
             }
         }
     }

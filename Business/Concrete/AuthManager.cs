@@ -43,7 +43,7 @@ namespace Business.Concrete
             }
 
             // Check if the password is correct by comparing their hashes.
-            var checkPassword = HashingHelper.VerifyPasswordHash(userLogin.Password, isUserExists.PasswordHash, isUserExists.PasswordSalt);
+            var checkPassword = HashingHelper.VerifyPasswordHash(userLogin.Password, isUserExists.Password, isUserExists.PasswordSalt);
 
             if (!checkPassword)
             {
@@ -70,7 +70,7 @@ namespace Business.Concrete
                 Email = userRegister.Email,
                 FirstName = userRegister.FirstName,
                 LastName = userRegister.LastName,
-                PasswordHash = passwordhash,
+                Password = passwordhash,
                 PasswordSalt = passwordsalt,
                 Status = true
             };
